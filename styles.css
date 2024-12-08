@@ -1,0 +1,80 @@
+#message {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+    display: none; /* Inicialmente oculta */
+}
+/* Estilo geral */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+header {
+    margin: 20px 0;
+}
+
+img {
+    max-width: 100%; /* Garante que a imagem não ultrapasse a largura da tela */
+    height: auto;    /* Mantém a proporção da imagem */
+    margin-top: 20px; /* Evita que a imagem fique colada ao topo */
+}
+
+form {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 400px; /* Limita a largura máxima do formulário */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input, select, button {
+    width: 100%; /* Preenche toda a largura disponível */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    form {
+        padding: 15px;
+        margin: 15px auto;
+    }
+
+    img {
+        margin-top: 10px;
+    }
+}
+#accompanimentField {
+    margin-top: 15px;
+}
