@@ -29,13 +29,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (attendance === "Sim") {
             message = `Obrigado, ${name}, por confirmar sua presença! Estamos ansiosos para te ver!`;
             if (accompaniments > 0) {
-                message += ` Você está acompanhado(a) de ${accompaniments} pessoa(s).`;
+                message += ` Você estara acompanhado(a) de ${accompaniments} pessoa(s).`;
             }
         } else if (attendance === "Não") {
-            message = `Que pena, ${name}, que você não poderá vir. Sentiremos sua falta!`;
+            message = `Que pena que você não virá ${name}. Sentiremos sua falta!`;
         }
 
-        alert("Enviando sua resposta...");
+        alert("Enviando sua resposta, clique em 'OK' e aguarde a confirmação ...");
 
         // Preparando os dados para envio
         const formData = new URLSearchParams({
