@@ -1,10 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("Script JS carregado corretamente."); // Teste básico
+
     const form = document.getElementById("rsvpForm");
     const attendanceSelect = document.getElementById("attendance");
     const accompanimentField = document.getElementById("accompanimentField");
+    const submitButton = document.getElementById("submitButton"); // ID correto
 
     // URL do Google Apps Script
-    const scriptURL = "https://script.google.com/macros/s/AKfycbwmJnpGC0aSqTjg4scu8k0_Ru5d6RmHRyNBKhnqdSrpwsFnPBW4BIdEdUUfikFiHRXf/exec"; 
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwmJnpGC0aSqTjg4scu8k0_Ru5d6RmHRyNBKhnqdSrpwsFnPBW4BIdEdUUfikFiHRXf/exec";
 
     // Mostra/esconde o campo de acompanhantes com base na escolha
     attendanceSelect.addEventListener("change", () => {
@@ -13,7 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault(); // Impede o envio do formulário
-        
+
+        // Desabilita o botão para evitar múltiplos envios
+        submitButton.disabled = true;
+        submitButton.innerText = "Enviando...";
+
         const name = document.getElementById("name").value.trim();
         const attendance = document.getElementById("attendance").value;
         const accompaniments = document.getElementById("accompaniments").value || "0"; // "0" se vazio
@@ -21,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Verificar se os campos obrigatórios estão preenchidos
         if (!name || !attendance) {
             alert("Por favor, preencha todos os campos obrigatórios.");
+            submitButton.disabled = false; // Reativa o botão
+            submitButton.innerText = "Enviar";
             return;
         }
 
@@ -29,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (attendance === "Sim") {
             message = `Obrigado, ${name}, por confirmar sua presença! Estamos ansiosos para te ver!`;
             if (accompaniments > 0) {
-                message += ` Você estara acompanhado(a) de ${accompaniments} pessoa(s).`;
+                message += ` Você estará acompanhado(a) de ${accompaniments} pessoa(s).`;
             }
         } else if (attendance === "Não") {
             message = `Que pena que você não virá ${name}. Sentiremos sua falta!`;
@@ -51,15 +60,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: formData
             });
 
-            // Exibe a resposta do servidor (mensagem de confirmação)
+            if (!response.ok) {
+                throw new Error("Falha no envio dos dados.");
+            }
+
+            // Exibe a resposta do servidor
             const result = await response.text();
-
-            // Exibe a resposta do servidor e a mensagem de confirmação
-            alert(result + "\n\n" + message); // Pop-up com resposta imediata
-
+            alert(result + "\n\n" + message);
         } catch (error) {
             alert("Erro ao salvar os dados. Tente novamente mais tarde.");
             console.error("Erro:", error);
+        } finally {
+            // Reativa o botão após o envio (ou erro)
+            submitButton.disabled = false;
+            submitButton.innerText = "Enviar";
+
+            // Limpa os campos do formulário
+            form.reset();
+            accompanimentField.style.display = "none"; // Esconde o campo de acompanhantes, se necessário
         }
     });
 });

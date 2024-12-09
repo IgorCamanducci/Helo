@@ -172,3 +172,9 @@ button:hover {
     width: 200px;
     height: 270px;
 }
+button:disabled {
+    background-color: #ccc; /* Cinza claro */
+    color: #666; /* Cinza escuro */
+    cursor: not-allowed; /* Cursor de não permitido */
+    opacity: 0.7; /* Reduz a opacidade para parecer desativado */
+}
