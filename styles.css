@@ -168,3 +168,7 @@ button:hover {
 #accompanimentField {
     margin-top: 15px;
 }
+.imagem-tamanho-fixo {
+    width: 200px;
+    height: 270px;
+}
